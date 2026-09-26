@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project N1 Airsoft</title>
+<meta name="description" content="Project N1 — indoor CQB airsoft arena in El Monte, CA. Walk-on play 7 days a week, rentals, IDMS, Jungle Ball, Nerf, private parties, pro shop, gym and archery range.">
+<meta name="theme-color" content="#030805">
+<link rel="icon" type="image/png" href="assets/img/n1-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Share+Tech+Mono&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- boot overlay (once per session) -->
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot__inner">
+    <img src="assets/img/n1-logo.png" alt="" class="boot__logo">
+    <pre class="boot__log" id="bootLog"></pre>
+    <div class="boot__bar"><span></span></div>
+  </div>
+</div>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ========== NAV ========== -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav__brand" aria-label="Project N1 home">
+    <img src="assets/img/n1-logo.png" alt="Project N1" width="30" height="36">
+    <span class="nav__word">PROJECT<b>N1</b></span>
+  </a>
+  <nav class="nav__links" id="navLinks" aria-label="Primary">
+    <a href="#admission">Admission</a>
+    <a href="#rentals">Rentals</a>
+    <a href="#missions">Game Modes</a>
+    <a href="#memberships">Members</a>
+    <a href="#parties">Parties</a>
+    <a href="#rules">Rules</a>
+    <a href="#facility">Facility</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="nav__status">
+    <span class="status" id="navStatus"><i></i><span>Checking status…</span></span>
+    <span class="nav__clock mono" id="navClock">--:--:-- PT</span>
+  </div>
+  <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main id="main">
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="top">
+  <div class="hero__bg nv">
+    <img src="assets/img/op-stack.jpg" alt="" fetchpriority="high">
+  </div>
+  <div class="topo topo--hero" aria-hidden="true"></div>
+  <div class="hero__grid" aria-hidden="true"></div>
+
+  <!-- laser targeting (pointer devices only) -->
+  <div class="target" id="target" aria-hidden="true">
+    <span class="target__h"></span><span class="target__v"></span>
+    <span class="target__reticle"></span>
+    <span class="target__read mono" id="targetRead">GRID 000 / 000</span>
+  </div>
+
+  <div class="hero__inner wrap">
+    <div class="hero__copy">
+      <p class="kicker mono"><span class="blink">▮</span> 12440 EXLINE ST · EL MONTE, CA · 34.07°N 118.03°W</p>
+      <h1 class="hero__title">
+        <span class="line" data-scramble>GET GOOD</span>
+        <span class="line" data-scramble>IN THE <em>PLYWOOD</em></span>
+        <span class="line" data-scramble>JUNGLE</span>
+      </h1>
+      <p class="hero__lede">Indoor close-quarters airsoft built by players, for players. A fully modular arena, a pro shop and tech bench, and walk-on games <strong>seven days a week</strong>.</p>
+      <div class="hero__cta">
+        <a href="#admission" class="btn btn--solid">Plan your op <span aria-hidden="true">→</span></a>
+        <a href="#parties" class="btn btn--ghost">Book a private party</a>
+      </div>
+      <dl class="telemetry mono">
+        <div><dt>FPS CAP</dt><dd>350 <small>/ 1.14 J</small></dd></div>
+        <div><dt>FIRE MODE</dt><dd>SEMI</dd></div>
+        <div><dt>M.E.D.</dt><dd>NONE</dd></div>
+        <div><dt>OPEN</dt><dd>7 DAYS</dd></div>
+      </dl>
+    </div>
+
+    <div class="scope" aria-hidden="true">
+      <div class="scope__frame">
+        <canvas id="radar"></canvas>
+        <span class="scope__tag scope__tag--tl mono">SCOPE // CQB-01</span>
+        <span class="scope__tag scope__tag--tr mono" id="radarCount">CONTACTS 00</span>
+        <span class="scope__tag scope__tag--bl mono">RNG 40M</span>
+        <span class="scope__tag scope__tag--br mono" id="radarBrg">BRG 000°</span>
+      </div>
+    </div>
+  </div>
+
+  <a href="#admission" class="hero__scroll mono" aria-label="Scroll to admission">SCROLL <span></span></a>
+</section>
+
+<!-- ticker -->
+<div class="ticker mono" aria-hidden="true">
+  <div class="ticker__track">
+    <span>SEMI ONLY</span><span>350 FPS · 1.14 J</span><span>FULL FACE PROTECTION REQUIRED</span><span>MIL · LEO · FIRE &amp; RESCUE ENTER FREE</span><span>GROUPS OF 5+ SAVE $5 EACH</span><span>ONE HIT AND YOU'RE OUT</span><span>NO BANG-BANG</span><span>FOLLOW @PROJECTN1 FOR SPECIAL HOURS</span>
+    <span>SEMI ONLY</span><span>350 FPS · 1.14 J</span><span>FULL FACE PROTECTION REQUIRED</span><span>MIL · LEO · FIRE &amp; RESCUE ENTER FREE</span><span>GROUPS OF 5+ SAVE $5 EACH</span><span>ONE HIT AND YOU'RE OUT</span><span>NO BANG-BANG</span><span>FOLLOW @PROJECTN1 FOR SPECIAL HOURS</span>
+  </div>
+</div>
+
+<!-- ========== 01 ADMISSION ========== -->
+<section class="sec" id="admission">
+  <div class="sec__bg nv" aria-hidden="true"><img src="assets/img/barrier-closeup.jpg" alt="" loading="lazy"></div>
+  <div class="topo" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="sec__id mono">[01] // OPS WINDOW</p>
+      <h2 data-scramble>Admission &amp; Hours</h2>
+      <p class="sec__lede">General walk-on play. Games run in rotation: 15 minutes on the field, 15 minutes to reload and regroup.</p>
+    </header>
+
+    <div class="prices">
+      <article class="price hud reveal" data-days="1,2,3,4">
+        <p class="price__day mono">MON – THU</p>
+        <p class="price__amt"><sup>$</sup>20</p>
+        <p class="price__hrs mono">1700 – 2200<br><small>5:00 PM – 10:00 PM</small></p>
+        <span class="price__today mono">TODAY</span>
+      </article>
+      <article class="price hud reveal" data-days="5">
+        <p class="price__day mono">FRIDAY</p>
+        <p class="price__amt"><sup>$</sup>25</p>
+        <p class="price__hrs mono">1900 – 0000<br><small>7:00 PM – MIDNIGHT</small></p>
+        <span class="price__today mono">TODAY</span>
+      </article>
+      <article class="price hud reveal" data-days="6,0">
+        <p class="price__day mono">SAT – SUN</p>
+        <p class="price__amt"><sup>$</sup>35</p>
+        <p class="price__hrs mono">1300 – 2200<br><small>1:00 PM – 10:00 PM</small></p>
+        <p class="price__note mono">$25 AFTER 6:00 PM</p>
+        <span class="price__today mono">TODAY</span>
+      </article>
+      <article class="price price--free hud reveal">
+        <p class="price__day mono">ANY DAY</p>
+        <p class="price__amt">FREE</p>
+        <p class="price__hrs">Military, Law Enforcement, Fire &amp; Rescue with valid ID.</p>
+      </article>
+    </div>
+
+    <div class="intel reveal">
+      <div class="intel__item">
+        <p class="mono intel__k">GROUP DISCOUNT</p>
+        <p>Groups of <strong>5 or more players</strong> get <strong>$5 off</strong> each admission.</p>
+      </div>
+      <div class="intel__item intel__item--warn">
+        <p class="mono intel__k">⚠ SPECIAL HOURS</p>
+        <p>This site doesn't list special hours or event days. Check <a href="https://www.instagram.com/projectn1/" target="_blank" rel="noopener">@ProjectN1</a> or <a href="https://www.facebook.com/projectn1.coi/" target="_blank" rel="noopener">Facebook</a>, or <a href="tel:+16265423404">call the store</a> before a long drive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="laser" aria-hidden="true"></div>
+
+<!-- ========== 02 RENTALS ========== -->
+<section class="sec" id="rentals">
+  <div class="sec__bg sec__bg--right nv" aria-hidden="true"><img src="assets/img/cqb-aim.jpg" alt="" loading="lazy"></div>
+  <div class="topo" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="sec__id mono">[02] // ARMORY</p>
+      <h2 data-scramble>Rental Loadouts</h2>
+      <p class="sec__lede">The best rentals you'll find, from standard kits to premium options. No gear of your own? Grab a Full Battle Rattle and get on the field.</p>
+    </header>
+
+    <div class="armory">
+      <article class="kit hud reveal">
+        <p class="kit__tag mono">RECOMMENDED // FIRST-TIMERS</p>
+        <h3>Full Battle Rattle</h3>
+        <p>Rifle, protective vest, full face mask, and BBs all day. Everything you need to play, bundled to save you money.</p>
+        <div class="kit__price">
+          <div><span class="mono">MON–FRI</span><strong>$25</strong></div>
+          <div><span class="mono">SAT–SUN</span><strong>$30</strong></div>
+        </div>
+      </article>
+
+      <ul class="loadout reveal" aria-label="Individual rental items">
+        <li><div><h4>Standard Rifle</h4><p>Upgraded with an advanced electronic trigger system to level the playing field. Probably better than most players' own rifles.</p></div><span class="mono">$20</span></li>
+        <li><div><h4>Premium Rifle</h4><p>Custom rifles with more style and firepower, sometimes newly released models so you can try before you buy. Includes two extra magazines.</p></div><span class="mono">$30</span></li>
+        <li><div><h4>Gas Package</h4><p>Gas platforms with feedback and function closer to the real thing. Includes BBs and a can of green gas. Availability varies.</p></div><span class="mono">$60</span></li>
+        <li><div><h4>Standard Face Mask</h4><p>Full face protection with upgraded thermal lenses.</p></div><span class="mono">$15</span></li>
+        <li><div><h4>Premium Face Mask</h4><p>The Dye i4: better fit and function than the standard mask.</p></div><span class="mono">$25</span></li>
+        <li><div><h4>Body Armor</h4><p>Padded vest for extra protection on your torso.</p></div><span class="mono">$15</span></li>
+        <li><div><h4>Tracer Unit</h4><p>Mount it on your muzzle and see exactly where your BBs are going. Tracer BBs not included.</p></div><span class="mono">$30</span></li>
+        <li><div><h4>Spare Magazine</h4><p>A hundred extra BBs, ready to go in your pocket.</p></div><span class="mono">$5</span></li>
+      </ul>
+    </div>
+
+    <ul class="fineprint mono reveal">
+      <li>All rental guns include unlimited BBs.</li>
+      <li>Rental guns must be used with rental mags and field BBs. No outside BBs, no exceptions.</li>
+      <li>A valid California ID / driver's license or credit card is required for all equipment rentals.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="laser" aria-hidden="true"></div>
+
+<!-- ========== 03 GAME MODES ========== -->
+<section class="sec" id="missions">
+  <div class="sec__bg nv" aria-hidden="true"><img src="assets/img/cqb-pistol.jpg" alt="" loading="lazy"></div>
+  <div class="topo" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="sec__id mono">[03] // MISSION SELECT</p>
+      <h2 data-scramble>Game Modes</h2>
+      <p class="sec__lede">From everyday walk-on games to competitive 5v5 formats, plus foam-dart ops for younger players.</p>
+    </header>
+
+    <div class="tabs reveal">
+      <div class="tabs__list" role="tablist" aria-label="Game modes">
+        <button role="tab" id="tab-idms" aria-controls="p-idms" aria-selected="true"><span class="mono">01</span> IDMS</button>
+        <button role="tab" id="tab-jb" aria-controls="p-jb" aria-selected="false" tabindex="-1"><span class="mono">02</span> Jungle Ball</button>
+        <button role="tab" id="tab-nerf" aria-controls="p-nerf" aria-selected="false" tabindex="-1"><span class="mono">03</span> Nerf at N1</button>
+      </div>
+
+      <!-- IDMS -->
+      <div class="tabs__panel hud" role="tabpanel" id="p-idms" aria-labelledby="tab-idms">
+        <div class="brief">
+          <div class="brief__main">
+            <p class="mono brief__code">OP: INDOOR MILSPEED</p>
+            <h3>IDMS</h3>
+            <p>Indoor Milspeed is the ultimate CQB airsoft simulation, combining milsim realism with speedsoft pace.</p>
+            <div class="specs mono">
+              <div><b>5V5</b><span>TEAMS</span></div>
+              <div><b>3:00</b><span>PER ROUND</span></div>
+              <div><b>MAYHEM</b><span>GUARANTEED</span></div>
+            </div>
+            <p class="brief__note">Follow <a href="https://www.instagram.com/projectn1/" target="_blank" rel="noopener">@ProjectN1</a> for the latest IDMS info and scheduling.</p>
+          </div>
+          <div class="brief__grid">
+            <div class="cell"><h4><span class="mono">A</span> Attack</h4><p>Complete the objective: threat neutralization or item recovery. Attackers can enter and exit the house as needed and may use grenades to help clear rooms.</p></div>
+            <div class="cell"><h4><span class="mono">D</span> Defend</h4><p>You're surrounded, and your only job is to stay alive. Defenders can't leave the house until the final minute but can barricade to slow the entry.</p></div>
+            <div class="cell"><h4><span class="mono">+</span> Medic</h4><p>Every player can be revived once. Downed players die in place and can call for a medic. Once a teammate makes contact, both can move to safety to finish the revive.</p></div>
+            <div class="cell"><h4><span class="mono">#</span> Ammo Limit</h4><p>Semi only. One magazine for rifles and SMGs, three shells for shotguns. No mag adapters. One grenade per player per round.</p></div>
+            <div class="cell"><h4><span class="mono">G</span> Gas / Spring Only</h4><p>Gas rifles, SMGs and shotguns; spring shotguns and bolt guns. <strong>No pistols.</strong> Stocks must be deployed. 350 FPS / 1.14 J limit.</p></div>
+            <div class="cell"><h4><span class="mono">⌂</span> Multi-Entry Shoot House</h4><p>Attack and defend a house of rooms, hallways, windows and doorways. Attackers can hit from one entry point or several to confuse and overwhelm the defenders.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JUNGLE BALL -->
+      <div class="tabs__panel hud" role="tabpanel" id="p-jb" aria-labelledby="tab-jb" hidden>
+        <div class="brief">
+          <div class="brief__main">
+            <p class="mono brief__code">OP: CENTER FLAG</p>
+            <h3>Jungle Ball</h3>
+            <p>Team-vs-team competitive play. Win a round by carrying the center flag into the enemy start zone or by eliminating the entire opposing team.</p>
+            <div class="specs mono">
+              <div><b>5V5</b><span>TEAMS</span></div>
+              <div><b>3:00</b><span>MAX ROUND</span></div>
+              <div><b>BO3</b><span>PER MATCH</span></div>
+            </div>
+          </div>
+          <div class="brief__grid">
+            <div class="cell"><h4><span class="mono">T</span> Teams</h4><p>Five players per team, and multiple team entries are allowed. One substitution per set. Players can't swap between teams. Rosters are locked before games start.</p></div>
+            <div class="cell"><h4><span class="mono">⚑</span> Center Flag</h4><p>The flag must be carried in hand, not stuffed in a dump pouch. If the carrier is hit, the flag drops right where they were hit.</p></div>
+            <div class="cell"><h4><span class="mono">S</span> Semi Only</h4><p>Any gun type, semi-locked. No burst or ramping. Trigger feathering is allowed; one pull = one shot. Midcaps only. No winders, no M4 mag adapters for pistols.</p></div>
+            <div class="cell"><h4><span class="mono">!</span> Penalties</h4><p>Any penalty forfeits the current round for the team. A fourth team penalty means disqualification for the rest of the day.</p></div>
+          </div>
+        </div>
+        <details class="rulebook">
+          <summary class="mono">OPEN FULL RULEBOOK // MATCH, HITS, PENALTIES, TOURNAMENT</summary>
+          <div class="rulebook__cols">
+            <div>
+              <h5 class="mono">TIME &amp; MATCH</h5>
+              <ul>
+                <li>The referee verbally checks both teams are ready; the round starts on the referee's signal.</li>
+                <li>One match is best of 3 rounds, each round 3:00 max. Points are only awarded for winning a round.</li>
+                <li>If neither team is eliminated by 3:00, the round is a draw and no points are awarded. First team to 2 points wins.</li>
+                <li>If Round 1 is won and Round 2 is a draw, Round 3 is played as normal. If Round 3 is another draw, Round 4 is sudden death.</li>
+                <li>If Rounds 1 and 2 are both draws, Round 3 is sudden death: the first team to control the flag or score a kill wins.</li>
+              </ul>
+              <h5 class="mono">BREAKOUT</h5>
+              <ul>
+                <li>Teams break out from their start zones at opposite ends of the field.</li>
+                <li>One foot must be completely inside the start zone.</li>
+                <li>All guns must point at the wall, away from the enemy team, before the round begins.</li>
+              </ul>
+              <h5 class="mono">ENGAGEMENT</h5>
+              <ul>
+                <li>No minimum engagement distance. No surrenders or bang-bang. No melee weapons. No grenades. 350 FPS or 1.14 J limit.</li>
+                <li>Any bodily contact with a BB is a hit. Gun hits and ricochets don't count. Dry fires with an empty barrel don't count.</li>
+                <li>If opposing players shoot each other at the same time, both are out, with no continued play.</li>
+                <li>Referees control the countdown and start/end, can call hits and pull players, and have the final call, period.</li>
+              </ul>
+            </div>
+            <div>
+              <h5 class="mono">PENALTIES</h5>
+              <ul>
+                <li>All penalties count as team penalties and can't be transferred to another player.</li>
+                <li>Penalties include not calling a hit, late calls or continuing to play after being hit, purposely moving a barrier, and any attempt to gain an unfair advantage (for example, dead players calling out enemy positions).</li>
+                <li>Maximum of 4 penalties per team; the 4th means disqualification for the day. Penalties don't reset between sets or brackets, only at the end of each event.</li>
+              </ul>
+              <h5 class="mono">TOURNAMENT</h5>
+              <ul>
+                <li>Teams need 5+ players, with no maximum roster size. A player can register for only one team.</li>
+                <li>All teams must be registered and paid before the first match set is generated. No walk-ons or new teams after that.</li>
+                <li>Matches are randomly generated on the day in front of all team captains. There are no repeat matchups until every team has played every other team, and every team plays the same number of matches.</li>
+                <li>Double elimination with a blind-pick bracket. Semifinal and final are best of 5; the final winner takes the tournament.</li>
+                <li>A penalty is an automatic round loss; if both teams are penalized at once, the round is a draw.</li>
+                <li>One video challenge per team per tournament. It can only contest the penalty that was called and must be issued right after the round. The team must provide 100% clear proof, and a failed challenge earns a penalty.</li>
+                <li>Rules may be changed by agreement of all parties <em>before</em> the tournament. The rules posted at the start of the first game of the first bracket govern the whole tournament.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- NERF -->
+      <div class="tabs__panel hud" role="tabpanel" id="p-nerf" aria-labelledby="tab-nerf" hidden>
+        <div class="brief brief--photo">
+          <div class="brief__main">
+            <p class="mono brief__code">OP: NERF LIKE AN OPERATOR</p>
+            <h3>Nerf at N1</h3>
+            <p>Project N1 is a CQB training facility used by law enforcement, military and special operations groups. With low-impact foam darts, younger players can run the same space. It's a great way to build communication and teamwork, for all ages.</p>
+            <div class="specs mono">
+              <div><b>MON &amp; TUE</b><span>PUBLIC 5–10 PM</span></div>
+              <div><b>$20</b><span>ENTRY · $15 FOR 2+</span></div>
+              <div><b>$5</b><span>FULL RENTAL</span></div>
+            </div>
+            <p class="brief__note">Public nights alternate between Nerf and airsoft games. Bring your own Nerf blasters if you like; they must pass a safety inspection. Private parties are available any day. <a href="#parties">See party rates →</a></p>
+          </div>
+          <figure class="brief__fig nv nv--hover"><img src="assets/img/nerf.jpg" alt="Kids with Nerf blasters and masks at Project N1" loading="lazy"></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="laser" aria-hidden="true"></div>
+
+<!-- ========== 04 MEMBERSHIPS ========== -->
+<section class="sec" id="memberships">
+  <div class="topo" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="sec__id mono">[04] // ENLISTMENT</p>
+      <h2 data-scramble>Airsoft Memberships</h2>
+      <p class="sec__lede">Play as often as you want. Every member gets free basic rental gear and can bring a new guest free on each visit.</p>
+    </header>
+
+    <div class="ranks">
+      <article class="rank hud reveal">
+        <p class="rank__insig" aria-hidden="true"><i></i></p>
+        <p class="mono rank__term">1 MONTH</p>
+        <p class="rank__amt"><sup>$</sup>100</p>
+        <p class="rank__per mono">&nbsp;</p>
+        <p class="rank__perk">Discounted entry to N1 events</p>
+      </article>
+      <article class="rank hud reveal">
+        <p class="rank__insig" aria-hidden="true"><i></i><i></i></p>
+        <p class="mono rank__term">3 MONTHS</p>
+        <p class="rank__amt"><sup>$</sup>240</p>
+        <p class="rank__per mono">≈ $80 / MONTH</p>
+        <p class="rank__perk">Discounted entry to N1 events</p>
+      </article>
+      <article class="rank hud reveal">
+        <p class="rank__insig" aria-hidden="true"><i></i><i></i><i></i></p>
+        <p class="mono rank__term">6 MONTHS</p>
+        <p class="rank__amt"><sup>$</sup>390</p>
+        <p class="rank__per mono">≈ $65 / MONTH</p>
+        <p class="rank__perk">Discounted entry to N1 events</p>
+      </article>
+      <article class="rank rank--top hud reveal">
+        <p class="rank__flag mono">BEST VALUE</p>
+        <p class="rank__insig" aria-hidden="true"><b>★</b></p>
+        <p class="mono rank__term">1 YEAR</p>
+        <p class="rank__amt"><sup>$</sup>600</p>
+        <p class="rank__per mono">≈ $50 / MONTH</p>
+        <p class="rank__perk"><strong>Free</strong> entry to N1 events</p>
+      </article>
+    </div>
+
+    <div class="intel reveal">
+      <div class="intel__item">
+        <p class="mono intel__k">MEMBER BENEFITS</p>
+        <p>Bring <strong>one new guest free</strong> per visit (regular rental rates apply for guests). Guests come back free when you renew. Members get <strong>free basic rental equipment</strong>, which is non-transferable and can't be used by guests. Premium gear is extra.</p>
+      </div>
+      <div class="intel__item">
+        <p class="mono intel__k">PAYMENT</p>
+        <p>All memberships are paid up front. Monthly figures are for comparison only; monthly payments aren't available.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="laser" aria-hidden="true"></div>
+
+<!-- ========== 05 PARTIES ========== -->
+<section class="sec sec--photo" id="parties">
+  <div class="sec__bg sec__bg--full nv" aria-hidden="true"><img src="assets/img/squad.jpg" alt="" loading="lazy"></div>
+  <div class="topo" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="sec__id mono">[05] // PRIVATE OPS</p>
+      <h2 data-scramble>Private Parties &amp; Events</h2>
+      <p class="sec__lede">Birthdays, team building, scout troops, or a squad of first-timers who'd rather learn among friends. Private groups put you in control of the field.</p>
+    </header>
+
+    <div class="ops">
+      <article class="op hud reveal">
+        <p class="mono op__code">AIRSOFT // 3 HOURS PRIVATE</p>
+        <p class="op__amt"><sup>$</sup>435</p>
+        <p>Private play for up to 30 players, with no minimum group size. Bookable any time, including during public hours, with a 3-hour minimum. Max two groups booked at once.</p>
+        <div class="op__rates">
+          <p class="mono">BATTLE RATTLES <small>(everything you need to play)</small></p>
+          <div><span>1–10 players</span><b class="mono">$20 / player</b></div>
+          <div><span>11+ players</span><b class="mono">$15 / player</b></div>
+          <p class="op__small">Group rattle rates are valid for private events only. The bigger the group, the bigger the savings.</p>
+        </div>
+      </article>
+
+      <article class="op hud reveal">
+        <p class="mono op__code">NERF // 3 HOURS, ALL GEAR INCLUDED</p>
+        <div class="op__tiers">
+          <div><b class="mono">$300</b><span>up to 15 players</span></div>
+          <div><b class="mono">$400</b><span>up to 30 players</span></div>
+          <div><b class="mono">$500</b><span>up to 40 players</span></div>
+        </div>
+        <p>Great for birthdays and all ages. Covers entry and all the equipment you need. Cater your own food and drinks at no extra cost, with picnic-style seating for your party and guests.</p>
+      </article>
+
+      <div class="op op--brief reveal">
+        <p class="mono op__code">BOOKING BRIEF</p>
+        <ul>
+          <li><b>$145 retainer</b> locks in your date and is credited to your balance. It becomes non-refundable and non-transferable 24 hours after booking.</li>
+          <li>Games rotate 15 minutes on, 15 off. If you book during public hours, walk-on games run during your intermission.</li>
+          <li>Airsoft rentals aren't included; standard rental rates apply. Over 30 players may add $15 per extra player.</li>
+          <li>Keep playing into public hours for half the daily admission. Rental gear already in use costs nothing extra.</li>
+          <li>Discounts available for scout troops and youth groups.</li>
+        </ul>
+        <a href="#contact" class="btn btn--solid">Book your party <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="laser" aria-hidden="true"></div>
+
+<!-- ========== 06 RULES ========== -->
+<section class="sec" id="rules">
+  <div class="sec__bg sec__bg--right nv" aria-hidden="true"><img src="assets/img/op-breach.jpg" alt="" loading="lazy"></div>
+  <div class="topo" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="sec__id mono">[06] // RULES OF ENGAGEMENT</p>
+      <h2 data-scramble>Rules &amp; Guidelines</h2>
+      <p class="sec__lede">We're proud of our field and strictly enforce these rules so everyone plays safe and has fun. Your first and only warning comes at orientation or check-in. Breaking the rules leads to disciplinary action as management sees fit.</p>
+    </header>
+
+    <div class="alert reveal" role="note">
+      <p class="mono alert__k">■ PRIORITY TRAFFIC</p>
+      <p><strong>Read and understand the rules.</strong> They're there to protect everyone and keep things running smoothly. You won't have a good time if you break them. <em>We are not joking.</em></p>
+    </div>
+
+    <div class="roe">
+      <article class="roe__card hud reveal">
+        <h3 class="mono"><span>01</span> Face Protection</h3>
+        <ul>
+          <li>There's no minimum engagement distance, so <b>full face protection is required for all ages</b>.</li>
+          <li><b>Players 17 and under</b> must wear a one-piece full face mask. No goggle-and-mesh combos.</li>
+          <li>Players 18+ may use two-piece systems.</li>
+          <li>Helo-kits, shemaghs and neoprene masks don't count and aren't allowed.</li>
+          <li>Ear and head protection is not required, but highly recommended.</li>
+        </ul>
+      </article>
+      <article class="roe__card hud reveal">
+        <h3 class="mono"><span>02</span> Engagement</h3>
+        <ul>
+          <li><b>350 FPS or 1.14 joules</b> max.</li>
+          <li><b>Semi fire only.</b> No ramping, binary, auto or burst (shotguns excepted).</li>
+          <li>No minimum engagement distance (M.E.D.).</li>
+          <li>No bang-bang, surrender or parlay.</li>
+          <li>It only takes one BB hit to be out.</li>
+          <li>Gun hits and ricochets do not count.</li>
+        </ul>
+      </article>
+      <article class="roe__card hud reveal">
+        <h3 class="mono"><span>03</span> Fire Discipline</h3>
+        <ul>
+          <li>No excessive shooting.</li>
+          <li>No jump shooting.</li>
+          <li>No blind firing.</li>
+          <li>No shooting through cracks.</li>
+          <li>No shooting at dead players.</li>
+          <li>No shooting while dead.</li>
+        </ul>
+      </article>
+      <article class="roe__card hud reveal">
+        <h3 class="mono"><span>04</span> Field Conduct</h3>
+        <ul>
+          <li>No talking or signaling to active players while dead.</li>
+          <li>Don't remove your face protection while dead.</li>
+          <li>Do not climb or move barriers.</li>
+          <li>Don't grab another player's weapon or gear.</li>
+          <li>Don't yell at another player that they're hit. Report cheating or foul play to the referee.</li>
+          <li>Turn in anything you find on the field to the referee.</li>
+          <li>No verbal or physical confrontations.</li>
+        </ul>
+      </article>
+      <article class="roe__card hud reveal">
+        <h3 class="mono"><span>05</span> Restricted</h3>
+        <ul>
+          <li>No lasers, grenades or riot shields without prior approval.</li>
+          <li>No melee weapons.</li>
+          <li>No personal recording of gameplay without prior approval.</li>
+          <li class="muted">Rules and guidelines are subject to change.</li>
+        </ul>
+      </article>
+      <article class="roe__card roe__card--id hud reveal">
+        <h3 class="mono"><span>06</span> Check-In &amp; Waiver</h3>
+        <ul>
+          <li>Players 18+ need a valid ID at check-in.</li>
+          <li>Players under 18 must be checked in by a parent or legal guardian with valid ID.</li>
+          <li>Minors need a copy of the parent's or guardian's valid CA license. The name and address must match the waiver.</li>
+        </ul>
+        <a class="btn btn--solid btn--sm" href="assets/docs/N1-Online-Waiver.doc" download>Download waiver <span aria-hidden="true">↓</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="laser" aria-hidden="true"></div>
+
+<!-- ========== 07 FACILITY ========== -->
+<section class="sec" id="facility">
+  <div class="topo" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="sec__id mono">[07] // FORWARD OPERATING BASE</p>
+      <h2 data-scramble>Also on Base</h2>
+      <p class="sec__lede">Our floor space is fully modular and adapts to all kinds of events. Under the same roof: a pro shop and tech bench, a full gym, and an indoor archery range.</p>
+    </header>
+
+    <div class="fob">
+      <article class="unit hud reveal">
+        <figure class="unit__fig nv nv--hover"><img src="assets/img/proshop-wall.jpg" alt="Wall of airsoft rifles for sale in the Project N1 pro shop" loading="lazy"></figure>
+        <div class="unit__body">
+          <p class="mono unit__code">UNIT 01 // STORE &amp; TECH</p>
+          <h3>Pro Shop &amp; Tech Work</h3>
+          <p>A great selection of airsoft replicas and gear for every player, plus a large stock of upgrade and repair parts. Not sure what you need? Talk to one of our pro shop associates.</p>
+          <p>Our tech team is one of the most affordable and knowledgeable in the industry and has been building, maintaining and upgrading guns for years. Got a gun that needs work? Bring it in and we'll get it running.</p>
+        </div>
+      </article>
+
+      <article class="unit hud reveal">
+        <figure class="unit__fig nv nv--hover"><img src="assets/img/gym.jpg" alt="Weight room at the Sweatshop fitness center" loading="lazy"></figure>
+        <div class="unit__body">
+          <p class="mono unit__code">UNIT 02 // THE SWEATSHOP</p>
+          <h3>Sweatshop Fitness Center</h3>
+          <p>Can't decide between the gym and airsoft? Our full fitness center inside Project N1 has equipment for nearly every muscle group. Personal training is available by appointment.</p>
+          <dl class="rates mono">
+            <div><dt>Day pass</dt><dd>$2</dd></div>
+            <div><dt>Monthly</dt><dd>$10</dd></div>
+            <div><dt>Annual</dt><dd>$110</dd></div>
+            <div><dt>Add to airsoft membership</dt><dd>+$5/mo</dd></div>
+            <div><dt>Gym + archery bundle</dt><dd>$20/mo</dd></div>
+          </dl>
+          <p class="unit__foot mono">OPEN 7 DAYS · SAME HOURS AS N1 · <a href="https://www.instagram.com/sweatshopfitness_n1/" target="_blank" rel="noopener">@SWEATSHOPFITNESS_N1</a></p>
+        </div>
+      </article>
+
+      <article class="unit hud reveal">
+        <figure class="unit__fig nv nv--hover"><img src="assets/img/archery-lane.jpg" alt="Indoor archery lane at Anchor Point Archery" loading="lazy"></figure>
+        <div class="unit__body">
+          <p class="mono unit__code">UNIT 03 // ANCHOR POINT</p>
+          <h3>Anchor Point Archery</h3>
+          <p>Our indoor archery range, crafted for the archery aficionado. Bring your own equipment; rentals are available once you've passed the Intro to Archery class. Paper targets are sold at the range.</p>
+          <p><strong>Intro to Archery:</strong> learn the basics, equipment included (or bring your own). Open to kids and adults. By appointment, with group rates available.</p>
+          <dl class="rates mono">
+            <div><dt>Day</dt><dd>$5</dd></div>
+            <div><dt>Monthly</dt><dd>$15</dd></div>
+            <div><dt>Annual</dt><dd>$165</dd></div>
+            <div><dt>Archery + gym bundle</dt><dd>$20/mo</dd></div>
+            <div><dt>Private range (max 10)</dt><dd>from $50/hr</dd></div>
+          </dl>
+          <p class="unit__foot mono">OPEN 7 DAYS · SAME HOURS AS N1 · <a href="https://www.instagram.com/anchorpointarchery_n1/" target="_blank" rel="noopener">@ANCHORPOINTARCHERY_N1</a></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="laser" aria-hidden="true"></div>
+
+<!-- ========== 08 ORIGIN ========== -->
+<section class="sec" id="origin">
+  <div class="sec__bg nv" aria-hidden="true"><img src="assets/img/arena-dark.jpg" alt="" loading="lazy"></div>
+  <div class="topo" aria-hidden="true"></div>
+  <div class="wrap origin">
+    <div class="origin__copy reveal">
+      <p class="sec__id mono">[08] // ORIGIN FILE — DECLASSIFIED</p>
+      <h2 data-scramble>Once Upon a Time…</h2>
+      <p>A young boy got his first airsoft gun, and with a passion for shooting, he loved it right away. Shooting cans in the garden soon lost its charm, so he went looking for bigger thrills at the nearest airsoft field. The rush of simulated combat and the camaraderie captured his heart. He played nearly every day and made friends for life. Then their field relocated, and things changed.</p>
+      <p>The new field was exciting at first, but as it changed, the joy faded. Visits got less frequent as the game they loved seemed to give way to greed and neglect. When the field's overseers left, the friends had nowhere to play. Unwilling to let their passion die, the boy and his friends came together to build their own arena: <strong>Project N1</strong>.</p>
+      <p class="origin__sign mono">Now here we stand, welcoming you to join us. Just be ready for a bit of mischief. They're quite fond of it.</p>
+    </div>
+    <div class="origin__stack reveal">
+      <figure class="nv nv--hover"><img src="assets/img/arena-overhead.jpg" alt="Overhead view of Project N1's plywood CQB arena" loading="lazy"></figure>
+      <figure class="nv nv--hover"><img src="assets/img/gearbox.jpg" alt="Upgraded airsoft gearbox on the N1 tech bench" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<div class="laser" aria-hidden="true"></div>
+
+<!-- ========== 09 CONTACT ========== -->
+<section class="sec" id="contact">
+  <div class="topo" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="sec__id mono">[09] // RALLY POINT</p>
+      <h2 data-scramble>Get Started Today</h2>
+      <p class="sec__lede">Leave us a message, or call or stop by the store during business hours. We respond to every email. If you don't hear back, check your spam folder and make sure your email and phone number were entered correctly.</p>
+    </header>
+
+    <div class="rally">
+      <div class="rally__map hud reveal">
+        <iframe title="Map to Project N1, 12440 Exline St, El Monte, CA" src="https://www.google.com/maps?q=12440+Exline+St,+El+Monte,+CA+91732&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <span class="rally__pin" aria-hidden="true"></span>
+        <div class="rally__coords mono" aria-hidden="true">LZ // 34.07°N 118.03°W</div>
+      </div>
+
+      <div class="rally__side">
+        <address class="comms hud reveal">
+          <div><p class="mono comms__k">MAIN OFFICE</p><p>12440 Exline Street<br>El Monte, CA 91732</p><a class="mono" href="https://www.google.com/maps/dir/?api=1&destination=12440+Exline+St,+El+Monte,+CA+91732" target="_blank" rel="noopener">GET DIRECTIONS →</a></div>
+          <div><p class="mono comms__k">PHONE</p><a href="tel:+16265423404">(626) 542-3404</a></div>
+          <div><p class="mono comms__k">EMAIL</p><a href="mailto:ProjectN1.COI@Gmail.com">ProjectN1.COI@Gmail.com</a></div>
+          <div><p class="mono comms__k">FOLLOW</p><a href="https://www.instagram.com/projectn1/" target="_blank" rel="noopener">Instagram @projectn1</a><br><a href="https://www.facebook.com/projectn1.coi/" target="_blank" rel="noopener">Facebook /projectn1.coi</a></div>
+        </address>
+
+        <form class="msg hud reveal" id="msgForm" novalidate>
+          <p class="mono comms__k">TRANSMIT MESSAGE</p>
+          <div class="msg__row">
+            <label>Name<input name="name" autocomplete="name" required></label>
+            <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
+          </div>
+          <label>Email <small>(please make sure it's correct)</small><input name="email" type="email" autocomplete="email" required></label>
+          <label>Subject
+            <select name="topic">
+              <option>General question</option>
+              <option>Private party / group booking</option>
+              <option>Nerf party</option>
+              <option>Membership</option>
+              <option>Tech work / pro shop</option>
+              <option>Archery or gym</option>
+            </select>
+          </label>
+          <label>Message<textarea name="message" rows="4" required></textarea></label>
+          <p class="msg__err mono" id="msgErr" role="alert"></p>
+          <button class="btn btn--solid" type="submit">Send transmission <span aria-hidden="true">→</span></button>
+          <p class="msg__note">Blank inquiries without contact info can't be answered.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="topo" aria-hidden="true"></div>
+  <div class="wrap foot__inner">
+    <div class="foot__brand">
+      <img src="assets/img/n1-logo.png" alt="Project N1" width="56" height="66">
+      <p class="mono">GET GOOD IN THE<br>PLYWOOD JUNGLE</p>
+    </div>
+    <nav class="foot__nav mono" aria-label="Footer">
+      <a href="#admission">Admission</a><a href="#rentals">Rentals</a><a href="#missions">Game Modes</a><a href="#memberships">Memberships</a>
+      <a href="#parties">Parties</a><a href="#rules">Rules</a><a href="#facility">Facility</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="foot__meta mono">
+      <p>12440 Exline St · El Monte, CA 91732</p>
+      <p><a href="tel:+16265423404">(626) 542-3404</a></p>
+      <p>© <span id="year">2026</span> Project N1. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
